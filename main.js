@@ -11,7 +11,7 @@ const characterIDParam = getQueryParam("characterID") || "";
 const tagsArray = tagsParam ? tagsParam.split(",") : [];
 const encodedTags = tagsArray.map((tag) => encodeURIComponent(tag)).join(",");
 
-const apiUrl = `https://indexer.crossbell.io/v1/notes?limit=3&includeDeleted=false&sources=${encodeURIComponent(
+const apiUrl = `https://indexer.crossbell.io/v1/notes?limit=100&includeDeleted=false&sources=${encodeURIComponent(
   sourcesParam
 )}&tags=${encodedTags}&characterID=${encodeURIComponent(
   characterIDParam

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API 数据展示</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- HTML 内容 -->
+    <div class="container">
+        <!-- Source信息 -->
+        <div class="source-info">
+            <div class="source-img">
+                <img src="source_image.jpg" alt="Source图片" />
+            </div>
+            <div class="source-details">
+                <h2 class="source-name">名称</h2>
+                <p class="source-followers">1000 Followers</p>
+                <a href="#" class="source-subscribe">Subscribe</a>
+            </div>
+        </div>
+
+        <!-- Feed流 -->
+        <div class="feed" id="feed">
+            <div class="feed">
+                <!-- Feed item -->
+                <div class="feed-item">
+                    <div class="feed-avatar">
+                        <img src="avatar_url" alt="avatar" />
+                    </div>
+                    <div class="feed-content">
+                        <h3 class="feed-title">title</h3>
+                        <p class="feed-text">content</p>
+                        <p class="feed-info">info</p>
+                        <div class="feed-tags">
+                            <!-- 标签列表 -->
+                            <span>tag1</span>
+                            <span>tag2</span>
+                        </div>
+                        <a href="#" class="feed-collect">收藏</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div id="load-more" style="height: 30px; background-color: red;">Loading more...</div>
+    <script src="main.js"></script>
+</body>
+
+</html>

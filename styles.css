@@ -1,0 +1,158 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Arial", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Source信息 */
+.source-info {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.source-img {
+    flex: 0 0 auto;
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+    background-color: #ccc;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.source-img img {
+    width: 100%;
+    height: auto;
+}
+
+.source-details {
+    flex: 1;
+}
+
+.source-name {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 0 10px;
+}
+
+.source-followers {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.source-subscribe {
+    display: inline-block;
+    background-color: #f60;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+/* Feed流 */
+.feed {
+    margin-top: 20px;
+}
+
+.feed-item {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    grid-template-rows: auto auto;
+    gap: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.feed-item:last-child {
+    margin-bottom: 0;
+}
+
+.feed-avatar {
+    grid-row: 1 / 3;
+    background-color: #ccc;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+}
+
+.feed-avatar img {
+    height: 100%;
+    display: block;
+}
+
+.character-id {
+    grid-column: 1;
+    grid-row: 2;
+    font-size: 14px;
+    text-align: center;
+}
+
+.feed-content {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.feed-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0 0 10px;
+}
+
+.feed-text {
+    font-size: 16px;
+    margin: 0 0 10px;
+}
+
+.feed-info {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.feed-tags {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.feed-tags span {
+    background-color: #ccc;
+    color: #333;
+    display: inline-block;
+    padding: 5px;
+    margin-right: 5px;
+    border-radius: 5px;
+}
+
+.feed-collect {
+    display: inline-block;
+    background-color: #00f;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+/* 响应式布局 */
+@media screen and (max-width: 768px) {
+    .source-info {
+        flex-direction: column;
+    }
+
+    .source-img {
+        margin-bottom: 20px;
+    }
+}

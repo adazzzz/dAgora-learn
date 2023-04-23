@@ -6,10 +6,12 @@ body {
     font-family: "Arial", sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #dddcd0;
+    
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 20px;
 }
@@ -70,9 +72,10 @@ body {
     display: grid;
     grid-template-columns: 60px 1fr;
     grid-template-rows: auto auto;
-    gap: 20px;
+    column-gap: 20px;
     padding: 20px;
     border: 1px solid #ccc;
+    background-color: #fff;
     border-radius: 5px;
     margin-bottom: 20px;
     position: relative;
@@ -98,7 +101,8 @@ body {
 .character-id {
     grid-column: 1;
     grid-row: 2;
-    font-size: 14px;
+    font-size: 12px;
+    font-weight: bold;
     text-align: center;
 }
 
@@ -108,23 +112,31 @@ body {
 }
 
 .feed-title {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: bold;
     margin: 0 0 10px;
 }
 
 .feed-text {
-    font-size: 16px;
+    font-size: 14px;
     margin: 0 0 10px;
 }
 
 .feed-info {
-    font-size: 14px;
+    font-size: 12px;
+    margin-bottom: 5px;
+    color: #666;
+}
+
+.feed-source {
+    font-size: 12px;
     margin-bottom: 10px;
+    color: #666;
+
 }
 
 .feed-tags {
-    font-size: 14px;
+    font-size: 10px;
     margin-bottom: 10px;
 }
 
@@ -132,17 +144,18 @@ body {
     background-color: #ccc;
     color: #333;
     display: inline-block;
-    padding: 5px;
+    padding: 2px 5px;
     margin-right: 5px;
-    border-radius: 5px;
+    border-radius: 2px;
 }
 
 .feed-collect {
     display: inline-block;
-    background-color: #00f;
+    background-color: rgb(114, 141, 189);
     color: #fff;
     text-decoration: none;
-    padding: 10px 15px;
+    font-size: 14px;
+    padding: 5px 8px;
     border-radius: 5px;
 }
 

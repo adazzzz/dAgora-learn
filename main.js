@@ -11,7 +11,7 @@ const characterIDParam = getQueryParam("characterID") || "";
 const tagsArray = tagsParam ? tagsParam.split(",") : [];
 const encodedTags = tagsArray.map((tag) => encodeURIComponent(tag)).join(",");
 
-const apiUrl = `https://indexer.crossbell.io/v1/notes?limit=100&includeDeleted=false&sources=${encodeURIComponent(
+const apiUrl = `https://indexer.crossbell.io/v1/notes?limit=200&includeDeleted=false&sources=${encodeURIComponent(
   sourcesParam
 )}&tags=${encodedTags}&characterID=${encodeURIComponent(
   characterIDParam
@@ -20,7 +20,22 @@ const apiUrl = `https://indexer.crossbell.io/v1/notes?limit=100&includeDeleted=f
 let nextPage = 1;
 let isLoading = false;
 
-// 其余代码保持不变
+function processSourceParam(sourceParam) {
+  const decodedSource = decodeURIComponent(sourceParam);
+  const processedSource = decodedSource.replace(/discord server: /g, "").trim();
+  return processedSource;
+}
+
+const sourceNameElement = document.getElementById("source-name");
+if (sourcesParam) {
+  sourceNameElement.textContent = processSourceParam(sourcesParam);
+} else {
+  sourceNameElement.textContent = "非单一source";
+}
+
+document.title = sourcesParam
+  ? `${decodeURIComponent(sourcesParam)} - 社区主页`
+  : "非单一 Source - 社区主页";
 
 async function fetchFeedData(page) {
   try {
@@ -38,7 +53,37 @@ async function fetchFeedData(page) {
   }
 }
 
-function createFeedItem(itemData) {
+async function getCharacterDetails(characterID) {
+  try {
+    const response = await fetch(
+      `https://indexer.crossbell.io/v1/characters/${characterID}`
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch character details");
+    }
+
+    const data = await response.json();
+    const content = data.metadata.content;
+    const avatarUrl =
+      content.avatars && content.avatars.length > 0
+        ? content.avatars[0].replace("ipfs://", "https://crossbell.io/ipfs/")
+        : null;
+
+    return {
+      name: content.name || "",
+      avatar: avatarUrl,
+    };
+  } catch (error) {
+    console.error("Error fetching character details:", error);
+    return {
+      name: "",
+      avatar: null,
+    };
+  }
+}
+
+function createFeedItem(itemData, characterDetails) {
   const feedItem = document.createElement("div");
   feedItem.className = "feed-item";
   const sourceText = itemData.metadata.content.sources
@@ -49,8 +94,12 @@ function createFeedItem(itemData) {
     .join(" / ");
   feedItem.innerHTML = `
       <div class="feed-avatar">
-          <img src="source_image.jpg" alt="avatar" />
-          <p class="character-id">${itemData.characterId}</p>
+          <img src="${
+            characterDetails.avatar || "source_image.jpg"
+          }" alt="avatar" />
+          <p class="character-id">${
+            characterDetails.name || itemData.characterId
+          }</p>
       </div>
       <div class="feed-content">
           <h3 class="feed-title">${itemData.metadata.content.title}</h3>
@@ -64,7 +113,7 @@ function createFeedItem(itemData) {
                 .map((tag) => `<span>${tag}</span>`)
                 .join("")}
           </div>
-          <a href="#" class="feed-collect">收藏</a>
+          <a href="#" class="feed-collect">Collect 暂不可用</a>
       </div>
   `;
   return feedItem;
@@ -75,8 +124,11 @@ async function displayFeedItems() {
   const feedData = await fetchFeedData(nextPage);
   const feedContainer = document.getElementById("feed");
 
+  feedContainer.innerHTML = ""; // 添加这一行来清空 feed 容器
+
   for (const itemData of feedData) {
-    const feedItem = createFeedItem(itemData);
+    const characterDetails = await getCharacterDetails(itemData.characterId);
+    const feedItem = createFeedItem(itemData, characterDetails);
     feedContainer.appendChild(feedItem);
   }
 

@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>API 数据展示</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+
 </head>
 
 <body>
@@ -17,7 +19,7 @@
                 <img src="source_image.jpg" alt="Source图片" />
             </div>
             <div class="source-details">
-                <h2 class="source-name">名称</h2>
+                <h2 class="source-name" id="source-name">名称</h2>
                 <p class="source-followers">1000 Followers</p>
                 <a href="#" class="source-subscribe">Subscribe</a>
             </div>
@@ -25,8 +27,8 @@
 
         <!-- Feed流 -->
         <div class="feed" id="feed">
-            <div class="feed">
-                <!-- Feed item -->
+            <!-- <div class="feed"> -->
+            <div class="display: none;">
                 <div class="feed-item">
                     <div class="feed-avatar">
                         <img src="avatar_url" alt="avatar" />
@@ -36,18 +38,19 @@
                         <p class="feed-text">content</p>
                         <p class="feed-info">info</p>
                         <div class="feed-tags">
-                            <!-- 标签列表 -->
                             <span>tag1</span>
                             <span>tag2</span>
                         </div>
-                        <a href="#" class="feed-collect">收藏</a>
+                        <a href="#" class="feed-collect">mint</a>
                     </div>
                 </div>
 
             </div>
         </div>
     </div>
-    <div id="load-more" style="height: 30px; background-color: red;">Loading more...</div>
+    <!-- <div id="load-more" style="height: 30px; background-color: red;">Loading more...</div> -->
+    <div id="load-more" style="height: 30px; color: #888; text-align: center;">Loading more...</div>
+
     <script src="main.js"></script>
 </body>
 
